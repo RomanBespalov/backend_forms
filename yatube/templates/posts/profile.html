@@ -5,24 +5,10 @@
 {% block content %}
   <div class="container py-5">
     <h1>Все посты пользователя {{ author }}</h1>
-    <h3>Всего постов: {{ total_posts }} </h3>   
+    <h3>Всего постов: {{ author.posts.count }} </h3>   
     {% for post in page_obj %}
       <article>
-        <ul>
-          <li>
-            <h6>Автор: {{ post.author.get_full_name }}
-            <a href="{% url 'posts:profile' post.author.username %}"></a></h6></li>
-          <li>
-            <h6>Дата публикации: {{ post.pub_date|date:"j E Y" }}</h6>
-          </li>
-        </ul>
-        <p>{{ post.text|linebreaksbr }}</p>
-        <ul>
-          <li><a href="{% url 'posts:post_detail' post.id %}">подробная информация </a></li>
-          {% if post.group %}
-          <li><a href="{% url 'posts:group_list' post.group.slug %}">все записи группы</a></li>
-          {% endif %}
-        <ul>
+        {% include 'includes/post_card.html' %}
         {% if not forloop.last %}
           <hr>
         {% endif %}        
