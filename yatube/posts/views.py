@@ -22,7 +22,6 @@ def group_posts(request, slug):
     context = {
         'page_obj': page_obj,
         'group': group,
-        'is_music': True,
     }
     return render(request, 'posts/group_list.html', context)
 
@@ -34,7 +33,6 @@ def profile(request, username):
     context = {
         'page_obj': page_obj,
         'author': author,
-        'is_author': True,
     }
     return render(request, 'posts/profile.html', context)
 
